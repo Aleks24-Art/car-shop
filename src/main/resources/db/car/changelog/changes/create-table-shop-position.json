@@ -1,0 +1,99 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "create-table-model",
+        "author": "Artemiy Aleksenko",
+        "changes": [
+          {
+            "createTable": {
+              "tableName": "shop-position",
+              "columns": [
+                {
+                  "column": {
+                    "autoIncrement": true,
+                    "constraints": {
+                      "nullable": false,
+                      "primaryKey": true
+                    },
+                    "name": "id",
+                    "type": "BIGSERIAL"
+                  }
+                },
+                {
+                  "column": {
+                    "constraints": {
+                      "nullable": false
+                    },
+                    "name": "mark_id",
+                    "type": "BIGSERIAL"
+                  }
+                },
+                {
+                  "column": {
+                    "constraints": {
+                      "nullable": false
+                    },
+                    "name": "model_id",
+                    "type": "BIGSERIAL"
+                  }
+                },
+                {
+                  "column": {
+                    "constraints": {
+                      "nullable": false
+                    },
+                    "name": "kilometrage",
+                    "type": "INTEGER"
+                  }
+                },
+                {
+                  "column": {
+                    "constraints": {
+                      "nullable": false
+                    },
+                    "name": "produced_year",
+                    "type": "INTEGER"
+                  }
+                },
+                {
+                  "column": {
+                    "constraints": {
+                      "nullable": false
+                    },
+                    "name": "price",
+                    "type": "NUMERIC"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "addForeignKeyConstraint": {
+              "baseColumnNames": "mark_id",
+              "baseTableName": "shop-position",
+              "constraintName": "fk_mark",
+              "onDelete": "CASCADE",
+              "onUpdate": "RESTRICT",
+              "referencedColumnNames": "id",
+              "referencedTableName": "mark",
+              "validate": true
+            }
+          },
+          {
+            "addForeignKeyConstraint": {
+              "baseColumnNames": "model_id",
+              "baseTableName": "shop-position",
+              "constraintName": "fk_model",
+              "onDelete": "CASCADE",
+              "onUpdate": "RESTRICT",
+              "referencedColumnNames": "id",
+              "referencedTableName": "model",
+              "validate": true
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "create-table-model",
+        "author": "Artemiy Aleksenko",
+        "changes": [
+          {
+            "createTable": {
+              "tableName": "model",
+              "columns": [
+                {
+                  "column": {
+                    "autoIncrement": true,
+                    "constraints": {
+                      "nullable": false,
+                      "primaryKey": true
+                    },
+                    "name": "id",
+                    "type": "BIGSERIAL"
+                  }
+                },
+                {
+                  "column": {
+                    "constraints": {
+                      "nullable": false
+                    },
+                    "name": "name",
+                    "type": "VARCHAR(200)"
+                  }
+                },
+                {
+                  "column": {
+                    "constraints": {
+                      "nullable": false
+                    },
+                    "name": "production_start_year",
+                    "type": "INTEGER"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "production_end_year",
+                    "type": "INTEGER"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "create-table-mark",
+        "author": "Artemiy Aleksenko",
+        "changes": [
+          {
+            "createTable": {
+              "tableName": "mark",
+              "columns": [
+                {
+                  "column": {
+                    "autoIncrement": true,
+                    "constraints": {
+                      "nullable": false,
+                      "primaryKey": true
+                    },
+                    "name": "id",
+                    "type": "BIGSERIAL"
+                  }
+                },
+                {
+                  "column": {
+                    "constraints": {
+                      "nullable": false
+                    },
+                    "name": "name",
+                    "type": "VARCHAR(200)"
+                  }
+                },
+                {
+                  "column": {
+                    "constraints": {
+                      "nullable": false
+                    },
+                    "name": "producing_country",
+                    "type": "VARCHAR(100)"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

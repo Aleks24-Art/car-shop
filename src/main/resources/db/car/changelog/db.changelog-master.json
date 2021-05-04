@@ -1,0 +1,19 @@
+{
+  "databaseChangeLog": [
+    {
+      "include": {
+        "file": "db/car/changelog/changes/create-table-model.json"
+      }
+    },
+    {
+      "include": {
+        "file": "db/car/changelog/changes/create-table-mark.json"
+      }
+    },
+    {
+      "include": {
+        "file": "db/car/changelog/changes/create-table-shop-position.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "fill-car-with-test-data",
+        "author": "Artemiy Aleksenko",
+        "changes": [
+          {
+            "sqlFile": {
+              "path": "dumps/fill_car_with_test_data.sql",
+              "relativeToChangelogFile": true
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
