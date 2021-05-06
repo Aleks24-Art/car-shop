@@ -7,7 +7,7 @@
         "changes": [
           {
             "createTable": {
-              "tableName": "shop-position",
+              "tableName": "shop_position",
               "columns": [
                 {
                   "column": {
@@ -71,7 +71,7 @@
           {
             "addForeignKeyConstraint": {
               "baseColumnNames": "mark_id",
-              "baseTableName": "shop-position",
+              "baseTableName": "shop_position",
               "constraintName": "fk_mark",
               "onDelete": "CASCADE",
               "onUpdate": "RESTRICT",
@@ -83,7 +83,7 @@
           {
             "addForeignKeyConstraint": {
               "baseColumnNames": "model_id",
-              "baseTableName": "shop-position",
+              "baseTableName": "shop_position",
               "constraintName": "fk_model",
               "onDelete": "CASCADE",
               "onUpdate": "RESTRICT",

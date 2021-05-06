@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class ModelNotFoundException extends RuntimeException {
+public class ShopPositionNotFoundException extends RuntimeException {
 
-    public ModelNotFoundException(Long id) {
-        super("Model not found by id = " + id);
+    public ShopPositionNotFoundException(Long id) {
+        super("Shop position not found by id: " + id);
     }
 }

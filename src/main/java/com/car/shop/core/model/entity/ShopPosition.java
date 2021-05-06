@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "shop-position")
+@Table(name = "shop_position")
 @Getter
 @Setter
 @ToString
@@ -30,5 +30,4 @@ public class ShopPosition {
     private Integer kilometrage;
 
     private BigDecimal price;
-
 }

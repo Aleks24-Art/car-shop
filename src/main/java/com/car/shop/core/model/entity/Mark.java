@@ -23,5 +23,6 @@ public class Mark {
     private String producingCountry;
 
     @OneToMany
+    @ToString.Exclude
     private List<ShopPosition> shopPosition;
 }

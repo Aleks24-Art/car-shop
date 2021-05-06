@@ -25,5 +25,6 @@ public class Model {
     private Integer productionEndYear;
 
     @OneToMany
+    @ToString.Exclude
     private List<ShopPosition> shopPosition;
 }
