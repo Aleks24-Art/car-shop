@@ -1,0 +1,9 @@
+INSERT INTO shop_position (id, mark_id, model_id, kilometrage, produced_year, price) VALUES (1, 1, 1, 241, 2003, 9000.5);
+INSERT INTO shop_position (id, mark_id, model_id, kilometrage, produced_year, price) VALUES (2, 2, 2, 346, 2012, 15000.3);
+INSERT INTO shop_position (id, mark_id, model_id, kilometrage, produced_year, price) VALUES (3, 3, 3, 123, 2019, 25000);
+INSERT INTO shop_position (id, mark_id, model_id, kilometrage, produced_year, price) VALUES (4, 4, 4, 12, 2003, 5000.1);
+INSERT INTO shop_position (id, mark_id, model_id, kilometrage, produced_year, price) VALUES (5, 5, 5, 698, 2003, 95000.2);
+INSERT INTO shop_position (id, mark_id, model_id, kilometrage, produced_year, price) VALUES (6, 6, 6, 158, 2014, 21000.3);
+INSERT INTO shop_position (id, mark_id, model_id, kilometrage, produced_year, price) VALUES (7, 7, 7, 555, 2020, 29000.4);
+INSERT INTO shop_position (id, mark_id, model_id, kilometrage, produced_year, price) VALUES (8, 8, 8, 199, 2007, 16000.7);
+INSERT INTO shop_position (id, mark_id, model_id, kilometrage, produced_year, price) VALUES (9, 9, 9, 777, 2017, 35000.8);

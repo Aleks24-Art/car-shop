@@ -9,8 +9,4 @@ public class MarkNotFoundException extends RuntimeException {
     public MarkNotFoundException(Long id) {
         super("Mark not found by id = " + id);
     }
-
-    public MarkNotFoundException(String name) {
-        super("Mark not found by name = " + name);
-    }
 }

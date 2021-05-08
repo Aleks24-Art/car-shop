@@ -18,7 +18,7 @@ public class MarkDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "ID", example = "24")
+    @ApiModelProperty(value = "ID марки автомобиля", example = "12")
     private Long id;
 
     @ApiModelProperty(value = "Название марки", example = "Mercedes-Benz")

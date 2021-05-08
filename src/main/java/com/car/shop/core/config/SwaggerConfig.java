@@ -6,6 +6,7 @@ import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
+import springfox.documentation.service.Tag;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.*;
@@ -16,6 +17,10 @@ import java.util.Collections;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
+
+    public static final String MODEL = "Model";
+    public static final String MARK = "Mark";
+    public static final String SHOP_POSITION = "Shop position";
 
     private static final Contact contact = new Contact(
             "Артемий Алексенко",
@@ -39,7 +44,12 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.car.shop.core.controller"))
                 .paths(PathSelectors.any())
                 .build()
-                .apiInfo(apiInfo);
+                .apiInfo(apiInfo)
+                .tags(
+                        new Tag(MODEL, "Модель автомобиля"),
+                        new Tag(MARK, "Марка автомобиля"),
+                        new Tag(SHOP_POSITION, "Позиция автомобиля в магазине")
+                );
     }
 
     @Bean

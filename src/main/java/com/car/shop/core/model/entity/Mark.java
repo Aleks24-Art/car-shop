@@ -25,4 +25,10 @@ public class Mark {
     @OneToMany
     @ToString.Exclude
     private List<ShopPosition> shopPosition;
+
+    public Mark(Long id, String name, String producingCountry) {
+        this.id = id;
+        this.name = name;
+        this.producingCountry = producingCountry;
+    }
 }

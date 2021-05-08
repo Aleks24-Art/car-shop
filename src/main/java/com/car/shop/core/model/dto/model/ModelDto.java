@@ -18,7 +18,7 @@ public class ModelDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "ID", example = "24")
+    @ApiModelProperty(value = "ID модели автомобиля", example = "24")
     private Long id;
 
     @ApiModelProperty(value = "Название модели", example = "S-Class w223")

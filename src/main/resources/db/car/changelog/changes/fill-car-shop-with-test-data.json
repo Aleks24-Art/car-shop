@@ -1,0 +1,30 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "fill-car-shop-with-test-data",
+        "author": "Artemiy Aleksenko",
+        "changes": [
+          {
+            "sqlFile": {
+              "path": "dumps/fill_mark_with_test_data.sql",
+              "relativeToChangelogFile": true
+            }
+          },
+          {
+            "sqlFile": {
+              "path": "dumps/fill_model_with_test_data.sql",
+              "relativeToChangelogFile": true
+            }
+          },
+          {
+            "sqlFile": {
+              "path": "dumps/fill_shop_position_with_test_data.sql",
+              "relativeToChangelogFile": true
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
