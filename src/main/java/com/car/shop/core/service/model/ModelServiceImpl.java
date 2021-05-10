@@ -36,6 +36,22 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
+    public Model update(Long id, Model newModel) {
+        log.info("Updating model by id: {} and body {} ", id, newModel);
+        return modelRepository.findById(id)
+                .map(model -> {
+                            model.setId(id);
+                            model.setName(newModel.getName());
+                            model.setProductionStartYear(newModel.getProductionStartYear());
+                            model.setProductionEndYear(newModel.getProductionEndYear());
+                            return modelRepository.save(model);
+                        }
+                ).orElseThrow(
+                        () -> new ModelNotFoundException(id)
+                );
+    }
+
+    @Override
     public void deleteById(Long id) {
         log.info("Deleting model by id: {}", id);
         modelRepository.deleteById(id);

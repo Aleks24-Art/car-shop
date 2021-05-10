@@ -3,10 +3,7 @@ package com.car.shop.core.model.dto.mark;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -15,6 +12,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @ApiModel(description = "Создания марки авомобиля")
 public class CreateMarkDto implements Serializable {
 

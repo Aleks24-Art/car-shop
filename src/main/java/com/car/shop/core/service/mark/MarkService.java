@@ -12,5 +12,7 @@ public interface MarkService {
 
     Mark save(Mark mark);
 
+    Mark update(Long id, Mark newMark);
+
     void deleteById(Long id);
 }

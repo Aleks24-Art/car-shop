@@ -7,7 +7,6 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -31,6 +30,10 @@ public class ApiErrorFactory {
 
     public static ApiError badRequest(WebRequest request, String message, List<String> errors) {
         return create(HttpStatus.BAD_REQUEST, request, message, errors);
+    }
+
+    public static ApiError notFound(WebRequest request, String message, List<String> errors) {
+        return create(HttpStatus.NOT_FOUND, request, message, errors);
     }
 
     private static String getPath(WebRequest request) {

@@ -11,5 +11,7 @@ public interface ModelService {
 
     Model save(Model model);
 
+    Model update(Long id, Model model);
+
     void deleteById(Long id);
 }

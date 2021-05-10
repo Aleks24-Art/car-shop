@@ -14,5 +14,7 @@ public interface ShopPositionService {
 
     ShopPosition save(ShopPosition shopPosition);
 
+    ShopPosition update(Long id, ShopPosition newShopPosition);
+
     void deleteById(Long id);
 }

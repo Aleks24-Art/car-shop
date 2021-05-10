@@ -10,7 +10,9 @@ import com.car.shop.core.service.mark.MarkService;
 import com.car.shop.core.service.model.ModelService;
 import com.car.shop.core.service.shop.position.ShopPositionService;
 import com.car.shop.core.util.mapper.ShopPositionMapper;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -23,7 +25,6 @@ import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
-@RequestMapping("")
 @Validated
 @Api(tags = SwaggerConfig.SHOP_POSITION)
 public class ShopPositionController {
@@ -55,13 +56,13 @@ public class ShopPositionController {
     }
 
     @ApiOperation("Получение всех позиций в магазине")
-    @GetMapping("v1/shop-position/all")
+    @GetMapping("/v1/shop-position/all")
     public List<ShopPositionDto> findAllShopPositions() {
         return shopPositionMapper.toDtos(shopPositionService.findAll());
     }
 
     @ApiOperation("Получение позиции в магазине по ID")
-    @GetMapping("v1/shop-position/{id}")
+    @GetMapping("/v1/shop-position/{id}")
     public ShopPositionDto findShopPositionById(
             @ApiParam("ID позиции в магазине")
             @PathVariable @Positive(message = "ID должно быть больше 0") Long id) {
@@ -69,7 +70,8 @@ public class ShopPositionController {
     }
 
     @ApiOperation("Создание новой позиции в магазине")
-    @PostMapping("v1/shop-position")
+    @PostMapping("/v1/shop-position")
+    @ResponseStatus(HttpStatus.CREATED)
     public ShopPositionDto saveShopPosition(
             @ApiParam("Модель для создания позиции в магазине")
             @RequestBody @Valid CreateShopPositionDto createShopPositionDto) {
@@ -80,8 +82,22 @@ public class ShopPositionController {
         return shopPositionMapper.toDto(savedShopPosition);
     }
 
+    @ApiOperation("Обновление позиции в магазине")
+    @PutMapping("/v1/shop-position/{id}")
+    public ShopPositionDto updateShopPosition(
+            @ApiParam("ID позиции в магазин")
+            @PathVariable @Positive(message = "ID должно быть больше 0") Long id,
+            @ApiParam("Модель для обновления позиции в магазине")
+            @RequestBody @Valid CreateShopPositionDto updateShopPositionDto) {
+        Model model = modelService.findById(updateShopPositionDto.getModelId());
+        Mark mark = markService.findById(updateShopPositionDto.getMarkId());
+        ShopPosition shopPositionToUpdate = shopPositionMapper.toModel(updateShopPositionDto, model, mark);
+        ShopPosition updatedShopPosition = shopPositionService.update(id, shopPositionToUpdate);
+        return shopPositionMapper.toDto(updatedShopPosition);
+    }
+
     @ApiOperation("Удаление позиции из магазина")
-    @DeleteMapping("v1/shop-position/{id}")
+    @DeleteMapping("/v1/shop-position/{id}")
     public ResponseEntity<String> deleteShopPosition(
             @ApiParam("ID позиции в магазине")
             @PathVariable @Positive(message = "ID должно быть больше 0") Long id) {

@@ -21,7 +21,6 @@ import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
 @Validated
 @Api(tags = SwaggerConfig.MODEL)
 public class ModelController {
@@ -34,13 +33,13 @@ public class ModelController {
     private ModelMapper modelMapper;
 
     @ApiOperation("Получение всех моделей автомобилей")
-    @GetMapping("v1/model/all")
+    @GetMapping("/v1/model/all")
     public List<ModelDto> findAllModels() {
         return modelMapper.toDtos(modelService.findAll());
     }
 
     @ApiOperation(value = "Получение модели автомобиля по ID")
-    @GetMapping("v1/model/{id}")
+    @GetMapping("/v1/model/{id}")
     public ModelDto findModelById(
             @ApiParam("ID модели автомобиля")
             @PathVariable @Positive(message = "ID должно быть больше 0") Long id) {
@@ -48,7 +47,8 @@ public class ModelController {
     }
 
     @ApiOperation(value = "Сохранение модели автомобиля")
-    @PostMapping("v1/model")
+    @PostMapping("/v1/model")
+    @ResponseStatus(HttpStatus.CREATED)
     public ModelDto saveModel(
             @ApiParam("Модель для сохранение модели авомобиля")
             @RequestBody @Valid CreateModelDto createModelDto) {
@@ -57,8 +57,20 @@ public class ModelController {
         return modelMapper.toDto(savedModel);
     }
 
+    @ApiOperation("Обновление модели автомобиля")
+    @PutMapping("/v1/model/{id}")
+    public ModelDto updateModel(
+            @ApiParam("ID модели автомобиля")
+            @PathVariable @Positive(message = "ID должно быть больше 0") Long id,
+            @ApiParam("Модель для обновления модели автомобиля")
+            @RequestBody @Valid CreateModelDto updateModelDto) {
+        Model modelToUpdate = modelMapper.toModel(updateModelDto);
+        Model updatedModel = modelService.update(id, modelToUpdate);
+        return modelMapper.toDto(updatedModel);
+    }
+
     @ApiOperation("Удаление модели автомобиля")
-    @DeleteMapping("v1/model/{id}")
+    @DeleteMapping("/v1/model/{id}")
     public ResponseEntity<String> deleteModel(
             @ApiParam("ID модели автомобиля")
             @PathVariable @Positive(message = "ID должно быть больше 0") Long id) {

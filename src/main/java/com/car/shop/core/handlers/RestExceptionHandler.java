@@ -37,7 +37,7 @@ public class RestExceptionHandler {
             ShopPositionNotFoundException.class})
     public ApiError handleNotFoundException(RuntimeException ex, WebRequest request) {
         List<String> errors = Collections.singletonList(ex.getMessage());
-        ApiError result = ApiErrorFactory.badRequest(request, ex.getMessage(), errors);
+        ApiError result = ApiErrorFactory.notFound(request, ex.getMessage(), errors);
         log.error("Entity not found exception. Response: {}", result);
         return result;
     }

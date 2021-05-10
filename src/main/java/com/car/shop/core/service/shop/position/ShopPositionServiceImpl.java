@@ -26,8 +26,8 @@ public class ShopPositionServiceImpl implements ShopPositionService {
         searchText = searchText.trim();
         Specification<ShopPosition> shopPositionSpecification =
                 shopPositionMarkNameHas(searchText)
-                .or(shopPositionModelNameHas(searchText))
-                .or(shopPositionMarkProducingCountryHas(searchText));
+                        .or(shopPositionModelNameHas(searchText))
+                        .or(shopPositionMarkProducingCountryHas(searchText));
 
         return shopPositionRepository.findAll(shopPositionSpecification, sort);
     }
@@ -49,6 +49,24 @@ public class ShopPositionServiceImpl implements ShopPositionService {
     public ShopPosition save(ShopPosition shopPosition) {
         log.info("Saving shop position: {}", shopPosition);
         return shopPositionRepository.save(shopPosition);
+    }
+
+    @Override
+    public ShopPosition update(Long id, ShopPosition newShopPosition) {
+        log.info("Updating shop position by id: {} and body {} ", id, newShopPosition);
+        return shopPositionRepository.findById(id)
+                .map(shopPosition -> {
+                            shopPosition.setId(id);
+                            shopPosition.setMark(newShopPosition.getMark());
+                            shopPosition.setModel(newShopPosition.getModel());
+                            shopPosition.setPrice(newShopPosition.getPrice());
+                            shopPosition.setKilometrage(newShopPosition.getKilometrage());
+                            shopPosition.setProducedYear(newShopPosition.getProducedYear());
+                            return shopPositionRepository.save(shopPosition);
+                        }
+                ).orElseThrow(
+                        () -> new ShopPositionNotFoundException(id)
+                );
     }
 
     @Override

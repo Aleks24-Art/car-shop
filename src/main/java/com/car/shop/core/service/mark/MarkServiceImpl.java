@@ -36,6 +36,21 @@ public class MarkServiceImpl implements MarkService {
     }
 
     @Override
+    public Mark update(Long id, Mark newMark) {
+        log.info("Updating mark by id: {} and body {} ", id, newMark);
+        return markRepository.findById(id)
+                .map(mark -> {
+                            mark.setId(id);
+                            mark.setName(newMark.getName());
+                            mark.setProducingCountry(newMark.getProducingCountry());
+                            return markRepository.save(mark);
+                        }
+                ).orElseThrow(
+                        () -> new MarkNotFoundException(id)
+                );
+    }
+
+    @Override
     public void deleteById(Long id) {
         log.info("Deleting mark by id: {}", id);
         markRepository.deleteById(id);
