@@ -62,6 +62,7 @@ public class MarkController {
     public ResponseEntity<String> deleteMark(
             @ApiParam("ID марки автомобиля")
             @PathVariable @Positive(message = "ID должно быть больше 0") Long id) {
+        markService.findById(id);
         markService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

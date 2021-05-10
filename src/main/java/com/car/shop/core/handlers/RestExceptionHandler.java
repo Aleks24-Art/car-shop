@@ -30,12 +30,12 @@ public class RestExceptionHandler {
         return result;
     }
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(value = {
             MarkNotFoundException.class,
             ModelNotFoundException.class,
             ShopPositionNotFoundException.class})
-    public ApiError handleNonExistentMark(RuntimeException ex, WebRequest request) {
+    public ApiError handleNotFoundException(RuntimeException ex, WebRequest request) {
         List<String> errors = Collections.singletonList(ex.getMessage());
         ApiError result = ApiErrorFactory.badRequest(request, ex.getMessage(), errors);
         log.error("Entity not found exception. Response: {}", result);

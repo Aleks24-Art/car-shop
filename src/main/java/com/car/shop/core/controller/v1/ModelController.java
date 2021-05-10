@@ -62,6 +62,7 @@ public class ModelController {
     public ResponseEntity<String> deleteModel(
             @ApiParam("ID модели автомобиля")
             @PathVariable @Positive(message = "ID должно быть больше 0") Long id) {
+        modelService.findById(id);
         modelService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

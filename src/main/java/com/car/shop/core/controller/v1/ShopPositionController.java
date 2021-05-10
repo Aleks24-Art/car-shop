@@ -85,6 +85,7 @@ public class ShopPositionController {
     public ResponseEntity<String> deleteShopPosition(
             @ApiParam("ID позиции в магазине")
             @PathVariable @Positive(message = "ID должно быть больше 0") Long id) {
+        shopPositionService.findById(id);
         shopPositionService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

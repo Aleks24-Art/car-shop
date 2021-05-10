@@ -22,7 +22,7 @@ public class Mark {
 
     private String producingCountry;
 
-    @OneToMany
+    @OneToMany(mappedBy = "mark", cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<ShopPosition> shopPosition;
 

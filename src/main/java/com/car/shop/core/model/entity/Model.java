@@ -24,7 +24,7 @@ public class Model {
 
     private Integer productionEndYear;
 
-    @OneToMany
+    @OneToMany(mappedBy = "model", cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<ShopPosition> shopPosition;
 }
