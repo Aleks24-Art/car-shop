@@ -140,7 +140,7 @@ class ModelControllerTest {
                 .content(testHelper.asJsonString(new CreateModelDto("", -200, -100))))
                 .andDo(print())
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", equalTo("Method argument not valid")))
+                .andExpect(jsonPath("$.message", equalTo(METHOD_ARGUMENT_ERROR)))
                 .andExpect(jsonPath("$.errors[*]", containsInAnyOrder(
                         "name: Название модели не может быть пустым",
                         "productionEndYear: Год окончания производства модели не может быть отрицательным",
@@ -190,7 +190,7 @@ class ModelControllerTest {
                 .content(testHelper.asJsonString(new CreateModelDto("", -200, -100))))
                 .andDo(print())
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", equalTo("Method argument not valid")))
+                .andExpect(jsonPath("$.message", equalTo(METHOD_ARGUMENT_ERROR)))
                 .andExpect(jsonPath("$.errors[*]", containsInAnyOrder(
                         "name: Название модели не может быть пустым",
                         "productionEndYear: Год окончания производства модели не может быть отрицательным",
@@ -205,7 +205,7 @@ class ModelControllerTest {
                 .content("{}"))
                 .andDo(print())
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", equalTo("Method argument not valid")))
+                .andExpect(jsonPath("$.message", equalTo(METHOD_ARGUMENT_ERROR)))
                 .andExpect(jsonPath("$.errors[*]", hasSize(2)))
                 .andExpect(jsonPath("$.errors[*]", containsInAnyOrder(
                         "name: Название модели не может быть пустым",
