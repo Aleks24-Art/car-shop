@@ -15,6 +15,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.car.shop.core.dictionary.ErrorMessage.CONSTRAINT_VIOLATION_ERROR;
+
 @Slf4j
 @RestControllerAdvice
 public class RestExceptionHandler {
@@ -25,7 +27,7 @@ public class RestExceptionHandler {
         List<String> errors = ex.getConstraintViolations().stream()
                 .map(v -> v.getRootBeanClass().getName() + " " + v.getPropertyPath() + ": " + v.getMessage())
                 .collect(Collectors.toList());
-        ApiError result = ApiErrorFactory.badRequest(request, "A constraint violation has occurred", errors);
+        ApiError result = ApiErrorFactory.badRequest(request, CONSTRAINT_VIOLATION_ERROR, errors);
         log.error("Constraint violation. Response: {}", result);
         return result;
     }

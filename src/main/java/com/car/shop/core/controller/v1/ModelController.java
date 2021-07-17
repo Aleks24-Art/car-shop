@@ -17,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class ModelController {
     @GetMapping("/v1/model/{id}")
     public ModelDto findModelById(
             @ApiParam("ID модели автомобиля")
-            @PathVariable @Positive(message = "ID должно быть больше 0") Long id) {
+            @PathVariable @NotNull @Positive(message = "ID должно быть больше 0") Long id) {
         return modelMapper.toDto(modelService.findById(id));
     }
 
@@ -61,7 +62,7 @@ public class ModelController {
     @PutMapping("/v1/model/{id}")
     public ModelDto updateModel(
             @ApiParam("ID модели автомобиля")
-            @PathVariable @Positive(message = "ID должно быть больше 0") Long id,
+            @PathVariable @NotNull @Positive(message = "ID должно быть больше 0") Long id,
             @ApiParam("Модель для обновления модели автомобиля")
             @RequestBody @Valid CreateModelDto updateModelDto) {
         Model modelToUpdate = modelMapper.toModel(updateModelDto);
@@ -73,7 +74,7 @@ public class ModelController {
     @DeleteMapping("/v1/model/{id}")
     public ResponseEntity<String> deleteModel(
             @ApiParam("ID модели автомобиля")
-            @PathVariable @Positive(message = "ID должно быть больше 0") Long id) {
+            @PathVariable @NotNull @Positive(message = "ID должно быть больше 0") Long id) {
         modelService.findById(id);
         modelService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

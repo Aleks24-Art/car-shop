@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 public class Model {
 
@@ -27,4 +28,11 @@ public class Model {
     @OneToMany(mappedBy = "model", cascade = CascadeType.ALL)
     @ToString.Exclude
     private List<ShopPosition> shopPosition;
+
+    public Model(Long id, String name, Integer productionStartYear, Integer productionEndYear) {
+        this.id = id;
+        this.name = name;
+        this.productionStartYear = productionStartYear;
+        this.productionEndYear = productionEndYear;
+    }
 }

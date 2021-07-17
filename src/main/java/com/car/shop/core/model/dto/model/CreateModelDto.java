@@ -2,12 +2,10 @@ package com.car.shop.core.model.dto.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.io.Serializable;
 
@@ -15,6 +13,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @ApiModel(description = "Создания модели авомобиля")
 public class CreateModelDto implements Serializable {
 
@@ -25,6 +24,7 @@ public class CreateModelDto implements Serializable {
     private String name;
 
     @PositiveOrZero(message = "Год начала производства модели не может быть отрицательным")
+    @NotNull(message = "Год начала производства модели не может быть пустым")
     @ApiModelProperty(value = "Год начала производства", example = "1989")
     private Integer productionStartYear;
 

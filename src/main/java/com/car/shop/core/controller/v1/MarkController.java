@@ -43,7 +43,7 @@ public class MarkController {
     @GetMapping("/v1/mark/{id}")
     public MarkDto findMarkById(
             @ApiParam("ID марки автомобиля")
-            @PathVariable @Positive(message = "ID должно быть больше 0") Long id) {
+            @PathVariable @NotNull @Positive(message = "ID должно быть больше 0") Long id) {
         return markMapper.toDto(markService.findById(id));
     }
 
@@ -74,7 +74,7 @@ public class MarkController {
     @DeleteMapping("/v1/mark/{id}")
     public ResponseEntity<String> deleteMark(
             @ApiParam("ID марки автомобиля")
-            @PathVariable @Positive(message = "ID должно быть больше 0") Long id) {
+            @PathVariable @NotNull @Positive(message = "ID должно быть больше 0") Long id) {
         markService.findById(id);
         markService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

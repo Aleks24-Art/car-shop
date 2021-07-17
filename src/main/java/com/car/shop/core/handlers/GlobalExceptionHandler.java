@@ -12,6 +12,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.car.shop.core.dictionary.ErrorMessage.METHOD_ARGUMENT_ERROR;
+
 @Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -22,7 +24,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         List<String> errors = ex.getBindingResult().getFieldErrors().stream()
                 .map(err -> err.getField() + ": " + err.getDefaultMessage())
                 .collect(Collectors.toList());
-        ApiError body = ApiErrorFactory.badRequest(request, "Method argument not valid", errors);
+        ApiError body = ApiErrorFactory.badRequest(request, METHOD_ARGUMENT_ERROR, errors);
         log.error("Method argument not valid. Response: {}", body);
         return new ResponseEntity<>(body, headers, HttpStatus.BAD_REQUEST);
     }

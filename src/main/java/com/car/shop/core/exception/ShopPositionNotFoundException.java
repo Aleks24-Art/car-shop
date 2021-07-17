@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ShopPositionNotFoundException extends RuntimeException {
 
     public ShopPositionNotFoundException(Long id) {
-        super("Shop position not found by id: " + id);
+        super("Shop position not found by id = " + id);
     }
 }
