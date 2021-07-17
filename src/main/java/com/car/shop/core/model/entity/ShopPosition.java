@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 public class ShopPosition {
     @Id

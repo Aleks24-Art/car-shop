@@ -134,21 +134,6 @@ class ModelControllerTest {
     }
 
     @Test
-    void saveModelWithNullFields() throws Exception {
-        mockMvc.perform(post("/v1/model")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(testHelper.asJsonString(new CreateModelDto(null, null, null))))
-                .andDo(print())
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", equalTo("Method argument not valid")))
-                .andExpect(jsonPath("$.errors[*]", hasSize(2)))
-                .andExpect(jsonPath("$.errors[*]", containsInAnyOrder(
-                        "name: Название модели не может быть пустым",
-                        "productionStartYear: Год начала производства модели не может быть пустым")
-                ));
-    }
-
-    @Test
     void saveModelWithIncorrectFields() throws Exception {
         mockMvc.perform(post("/v1/model")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -196,21 +181,6 @@ class ModelControllerTest {
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.message", equalTo(MODEL_NOT_FOUND_ERROR + id)))
                 .andExpect(jsonPath("$.errors[0]", containsString(MODEL_NOT_FOUND_ERROR + id)));
-    }
-
-    @Test
-    void updateModelWithNullFields() throws Exception {
-        mockMvc.perform(put("/v1/model/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(testHelper.asJsonString(new CreateModelDto(null, null, null))))
-                .andDo(print())
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", equalTo("Method argument not valid")))
-                .andExpect(jsonPath("$.errors[*]", hasSize(2)))
-                .andExpect(jsonPath("$.errors[*]", containsInAnyOrder(
-                        "name: Название модели не может быть пустым",
-                        "productionStartYear: Год начала производства модели не может быть пустым")
-                ));
     }
 
     @Test

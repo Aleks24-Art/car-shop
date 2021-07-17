@@ -46,14 +46,14 @@ class MarkControllerTest {
     void findAllMarks() throws Exception {
         when(markService.findAll()).thenReturn(Arrays.asList(
                 new Mark(1L, "Mercedes-Benz", "Germany"),
-                new Mark(2L, "BMW", "United Kingdom")
+                new Mark(2L, "Land Rover", "United Kingdom")
         ));
 
         mockMvc.perform((get("/v1/mark/all")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[*].id", containsInAnyOrder(1, 2)))
-                .andExpect(jsonPath("$[*].name", containsInAnyOrder("Mercedes-Benz", "BMW")))
+                .andExpect(jsonPath("$[*].name", containsInAnyOrder("Mercedes-Benz", "Land Rover")))
                 .andExpect(jsonPath("$[*].producingCountry", containsInAnyOrder("Germany", "United Kingdom")));
     }
 
@@ -132,27 +132,13 @@ class MarkControllerTest {
     }
 
     @Test
-    void saveMarkWithNullFields() throws Exception {
-        mockMvc.perform(post("/v1/mark")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(testHelper.asJsonString(new CreateMarkDto(null, null))))
-                .andDo(print())
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", equalTo("Method argument not valid")))
-                .andExpect(jsonPath("$.errors[*]", containsInAnyOrder(
-                        "producingCountry: Название страны-производителя не может быть пустым",
-                        "name: Название марки не может быть пустым")
-                ));
-    }
-
-    @Test
     void saveMarkWithEmptyFields() throws Exception {
         mockMvc.perform(post("/v1/mark")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(testHelper.asJsonString(new CreateMarkDto("", ""))))
                 .andDo(print())
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", equalTo("Method argument not valid")))
+                .andExpect(jsonPath("$.message", equalTo(METHOD_ARGUMENT_ERROR)))
                 .andExpect(jsonPath("$.errors[*]", containsInAnyOrder(
                         "producingCountry: Название страны-производителя не может быть пустым",
                         "name: Название марки не может быть пустым")
@@ -194,27 +180,13 @@ class MarkControllerTest {
     }
 
     @Test
-    void updateMarkWithNullFields() throws Exception {
-        mockMvc.perform(put("/v1/mark/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(testHelper.asJsonString(new CreateMarkDto(null, null))))
-                .andDo(print())
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", equalTo("Method argument not valid")))
-                .andExpect(jsonPath("$.errors[*]", containsInAnyOrder(
-                        "producingCountry: Название страны-производителя не может быть пустым",
-                        "name: Название марки не может быть пустым")
-                ));
-    }
-
-    @Test
     void updateMarkWithEmptyFields() throws Exception {
         mockMvc.perform(put("/v1/mark/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(testHelper.asJsonString(new CreateMarkDto("", ""))))
                 .andDo(print())
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", equalTo("Method argument not valid")))
+                .andExpect(jsonPath("$.message", equalTo(METHOD_ARGUMENT_ERROR)))
                 .andExpect(jsonPath("$.errors[*]", containsInAnyOrder(
                         "producingCountry: Название страны-производителя не может быть пустым",
                         "name: Название марки не может быть пустым")
@@ -228,7 +200,7 @@ class MarkControllerTest {
                 .content("{}"))
                 .andDo(print())
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.message", equalTo("Method argument not valid")))
+                .andExpect(jsonPath("$.message", equalTo(METHOD_ARGUMENT_ERROR)))
                 .andExpect(jsonPath("$.errors[*]", containsInAnyOrder(
                         "producingCountry: Название страны-производителя не может быть пустым",
                         "name: Название марки не может быть пустым")
